@@ -111,7 +111,7 @@ class Translator extends BaseTranslator
             }
         } elseif ('cli' === php_sapi_name() ? ini_get('opcache.enable_cli') : ini_get('opcache.enable')) {
             if (function_exists("opcache_invalidate") && !opcache_invalidate($path, true)) {
-                throw new \RuntimeException(sprintf('Failed to clear OPCache for file %s', $path));
+                //throw new \RuntimeException(sprintf('Failed to clear OPCache for file %s', $path));
             }
         }
     }
