@@ -146,6 +146,12 @@
             <argument>%lexik_translation.export_to_javascript_path%</argument>
         </service>
 
+        <service id="lexik_translation.export_to_javascript_service" class="Lexik\Bundle\TranslationBundle\Translation\ExportToJavascriptService">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="lexik_translation.translator"/>
+            <argument>%lexik_translation.export_to_javascript_path%</argument>
+        </service>
+
         <!-- Data grid -->
         <service id="lexik_translation.data_grid.formatter" class="%lexik_translation.data_grid.formatter.class%" public="true">
             <argument type="service" id="Lexik\Bundle\TranslationBundle\Manager\LocaleManagerInterface" />
