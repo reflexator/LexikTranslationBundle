@@ -3,6 +3,7 @@
 namespace Lexik\Bundle\TranslationBundle\Translation;
 
 use Lexik\Bundle\TranslationBundle\EventDispatcher\Event\GetDatabaseResourcesEvent;
+use Lexik\Bundle\TranslationBundle\EventDispatcher\Event\TranslationCacheClearEvent;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator as BaseTranslator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Translation\Loader\LoaderInterface;
@@ -99,6 +100,9 @@ class Translator extends BaseTranslator
             $this->invalidateSystemCacheForFile($metadata);
             unlink($metadata);
         }
+
+		$event = new TranslationCacheClearEvent($locales);
+		$this->container->get('event_dispatcher')->dispatch($event, $event::NAME);
     }
 
     /**
